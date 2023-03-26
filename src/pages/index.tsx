@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
@@ -8,12 +7,18 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 export default function Home() {
-// CREATE A LIST of 10 names for demo purposes
-const options = [ 'John', 'Paul', 'George', 'Ringo', 'Pete', 'Stuart', 'Mick', 'Keith', 'Ronnie', 'Charlie' ] 
+  // create a list of 6 objects within a name as string and an array of 3 random numbers each for demo purpose
+  const options = Array.from(Array(6), (_, i) => ({ name: `Option ${i + 1}`, random: Array.from(Array(3), () => Math.round(Math.random() * 100)) }));
+  console.log(options);
+  let randomValue = null;
   const defaultProps = {
-    options: options,
+    options: options.map((option) => option.name),
     getOptionLabel: (option: string) => option,
   };
+  function getRandom(value: string){
+    const random = options.find((option) => option.name === value)?.random;
+    randomValue = random;
+  }
   return (
     <>
       <Head>
@@ -22,12 +27,13 @@ const options = [ 'John', 'Paul', 'George', 'Ringo', 'Pete', 'Stuart', 'Mick', '
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <main className="MAIN">
       <h1>ENTREGAS</h1>
       <Stack spacing={1} sx={{ width: 400 }}>
         <Autocomplete
           {...defaultProps}
           id="auto-complete"
+          onChange={( event,value) => getRandom(value as string)} 
           autoComplete
           includeInputInList
           renderInput={(params) => (
