@@ -6,6 +6,10 @@ import { useState } from "react";
 
 export default function Deliver() {
     const options = Array.from(Array(6), (_, i) => ({ name: `Option ${i + 1}`, random: Array.from(Array(3), () => Math.round(Math.random() * 100)) }));
+    const defaultProps = {
+        options: options.map((option) => option.name),
+        getOptionLabel: (option: string) => option,
+        };
     type UserData = {
         name: string,
         random: Array<number>
@@ -15,24 +19,23 @@ export default function Deliver() {
     type userRandom = Array<number>
     type autoCompleteProps = { options: Array<string>, getOptionLabel: any };
     type autoCompleteArray = Array<autoCompleteProps>
-    const [Autocompletes, setAutocompletes] = useState<autoCompleteArray>([])
+    const [Autocompletes, setAutocompletes] = useState<autoCompleteProps[]>([defaultProps])
     const [users, setUsers] = useState<UserArray>(options)
     const [user , setUser] = useState<userRandom | null>(null)
     const [secondOption , setOption] = useState<userRandom | null>(null) 
-    const defaultProps = {
-      options: options.map((option) => option.name),
-      getOptionLabel: (option: string) => option,
-    };
-    Autocompletes.push(defaultProps);
     function getRandom(value: string){
         let random: userRandom | undefined ;
         random  = options.find((option) => option.name === value)?.random;
-        Autocompletes.push({
-            options: random,
-            getOptionLabel: (option: string) => option,
-        });
-        setAutocompletes(Autocompletes);
-        console.log(Autocompletes);
+        console.log(random);
+        if(random){
+            const adding = {
+                options: random,
+                getOptionLabel: (option: string) => option.toString(),
+            }
+            setAutocompletes([...Autocompletes,adding]);
+            console.log(Autocompletes);
+
+        }
     }
     function showAutoComplete(){
       const show = Autocompletes.map((auto,i) => {
