@@ -4,7 +4,7 @@ import { type } from "os";
 import * as React from "react";
 import { useState } from "react";
 import Theme from "@/models/themes";
-
+import Themes from "../components/theme"
 import { selectAuthState, setAuthState } from "../store/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -43,21 +43,7 @@ export default function Deliver() {
         }
     }
     function showAutoComplete(){
-      const show = Autocompletes.map((auto,i) => {
-       return <Autocomplete
-        key={i}
-        {...auto}
-        id="auto-complete"
-        onChange={( event,value) => getRandom(value as string)} 
-        autoComplete
-        includeInputInList
-        renderInput={(params) => (
-            <TextField {...params} label="autoComplete" variant="standard" />
-        )}
-        />
-      }
-      );
-        return show;
+       return (<Themes/>);
     }
     return (
     <>
