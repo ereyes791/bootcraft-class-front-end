@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectTheme } from "@/store/themesOptions";
 
 export default function Deliver() {
-    const options : Array<Theme> = Array.from(Array(6), (_, i) => ({ name: `Option ${i + 1}`, random: Array.from(Array(3), () => Math.round(Math.random() * 100)) }));
+    const options : Array<Theme> = Array.from(Array(6), (_, i) => ({ name: `Mision ${i + 1}`, random: Array.from(Array(3), () => Math.round(Math.random() * 100)) }));
     const defaultProps = {
         options: options.map((option) => option.name),
         getOptionLabel: (option: string) => option,
