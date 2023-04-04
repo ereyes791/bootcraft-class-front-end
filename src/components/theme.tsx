@@ -2,10 +2,11 @@ import * as React from "react";
 import { useState } from "react";
 import Theme from "@/models/themes";
 import { Autocomplete, TextField } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectTheme } from "@/store/themesOptions";
 
 export default function Themes() {
-    const options : Array<Theme> = Array.from(Array(6), (_, i) => ({ name: `Mision ${i + 1}`, random: Array.from(Array(3), () => Math.round(Math.random() * 100)) }));
+    const options : Array<Theme> = useSelector(selectTheme);
     const defaultProps = {
         options: options.map((option) => option.name),
         getOptionLabel: (option: string) => option,
@@ -13,6 +14,8 @@ export default function Themes() {
     function getRandom(value: string){
             console.log(value);
         }
+        const themeState = useSelector(selectTheme);
+        console.log(themeState);
         const dispatch = useDispatch();
     return (
         <>

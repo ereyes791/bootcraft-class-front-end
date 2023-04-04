@@ -19,8 +19,8 @@ export default function Deliver() {
     type userRandom = Array<number>
     type autoCompleteProps = { options: Array<string>, getOptionLabel: any };
     const [Autocompletes, setAutocompletes] = useState<autoCompleteProps[]>([defaultProps])
-    const authState = useSelector(selectTheme);
-    console.log(authState);
+    const themeState = useSelector(selectTheme);
+    console.log(themeState);
     function getRandom(value: string){
         let random: userRandom | undefined ;
         random  = options.find((option) => option.name === value)?.random;
