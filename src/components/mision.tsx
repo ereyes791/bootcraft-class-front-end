@@ -1,12 +1,27 @@
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Theme from "@/models/themes";
 import { Autocomplete, TextField } from "@mui/material";
+import { useSelector } from "react-redux";
+import { selectTheme } from "@/store/themesOptions";
 
 export default function Misions() {
-    const options : Array<Theme> = Array.from(Array(6), (_, i) => ({ name: `Option ${i + 1}`, random: Array.from(Array(3), () => Math.round(Math.random() * 100)) }));
+    const [previousValue, setPreviousValue] = useState('');
+    const themes = useSelector(selectTheme);
+    const reduxValue = useSelector(selectTheme).ThemeSelected;
+    const [previousArrayValue, setPreviousArrayValue] = useState(Array<number>);
+     useEffect(() => {
+        if (reduxValue !== previousValue) {
+            console.log(reduxValue,previousValue);
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            setPreviousArrayValue(themes.misions);
+          // Perform side effect with the new value
+        }
+      }, [reduxValue, previousValue]);
+    const ThemeSelected = useState( useSelector(selectTheme).ThemeSelected);
+    const Themes : Array<Theme> = useSelector(selectTheme).theme;
     const defaultProps = {
-        options: options.map((option) => option.name),
+        options: previousArrayValue,
         getOptionLabel: (option: string) => option,
         };
     function getRandom(value: string){

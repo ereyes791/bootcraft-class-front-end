@@ -3,20 +3,20 @@ import { useState } from "react";
 import Theme from "@/models/themes";
 import { Autocomplete, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { selectTheme } from "@/store/themesOptions";
+import { selectTheme,getOption } from "@/store/themesOptions";
 
 export default function Themes() {
-    const options : Array<Theme> = useSelector(selectTheme);
+    const options : Array<Theme> = useSelector(selectTheme).theme;
+    const dispatch = useDispatch();
     const defaultProps = {
         options: options.map((option) => option.name),
         getOptionLabel: (option: string) => option,
         };
     function getRandom(value: string){
-            console.log(value);
+            dispatch(getOption(value));
+            const randoms = options.find((option) => option.name === value)?.random;
+            console.log(randoms);
         }
-        const themeState = useSelector(selectTheme);
-        console.log(themeState);
-        const dispatch = useDispatch();
     return (
         <>
         <Autocomplete

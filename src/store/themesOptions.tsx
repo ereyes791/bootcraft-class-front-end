@@ -1,17 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AppState } from "./store";
-import { HYDRATE } from "next-redux-wrapper";
 import Theme from "@/models/themes";
 
+interface ThemeState {
+  theme: Array<Theme>,
+  ThemeSelected: String | null,
+  misions: Array<number>| null,
+}
+
 // Initial state
-const initialState: Array<Theme> = Array.from(
-    Array(6), (_, i) => ({ 
-        name: `Option ${i + 1}`, 
-        random: Array.from(
-            Array(3), 
-            () => Math.round(Math.random() * 100)) 
-    })
-);
+const initialState: ThemeState = 
+{
+    theme: Array.from(
+        Array(6), (_, i) => ({ 
+          name: `Option ${i + 1}`, 
+          random: Array.from(
+              Array(3), 
+              () => Math.round(Math.random() * 100)) 
+      })
+    ),
+    ThemeSelected: null,
+    misions: null,
+  }
 
 
 // Actual Slice
@@ -21,17 +31,8 @@ export const themeSlice = createSlice({
   reducers: {
     // Action to set the authentication status
     getOption(state, action) {
-        console.log(state);
-    },
-  },
-
-  // Special reducer for hydrating the state. Special case for next-redux-wrapper
-  extraReducers: {
-    [HYDRATE]: (state, action) => {
-      return {
-        ...state,
-        ...action.payload.theme,
-      };
+      state.ThemeSelected = action.payload;
+      state.misions = state.theme.find((option: any) => option.name === action.payload)?.random;
     },
   },
 });
