@@ -8,6 +8,7 @@ import Themes from "../components/theme"
 import { useDispatch, useSelector } from "react-redux";
 import { selectTheme } from "@/store/themesOptions";
 import Misions from "@/components/mision";
+import Packages from "@/components/packages";
 
 export default function Deliver() {
     const options : Array<Theme> = Array.from(Array(6), (_, i) => ({ name: `Mision ${i + 1}`, random: Array.from(Array(3), () => Math.round(Math.random() * 100)) }));
@@ -39,6 +40,7 @@ export default function Deliver() {
             <div>
                 <Themes/>
                 <Misions/>
+                <Packages/>
             </div>
        );
     }
