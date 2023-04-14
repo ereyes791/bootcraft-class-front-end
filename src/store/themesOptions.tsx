@@ -8,6 +8,21 @@ interface ThemeState {
   misions: Array<number>| null,
 }
 
+const data = [
+  {
+    name: "Ciudad Medieval",
+    objectives : ["Iglesia", "Castillo", "Mercado"],
+  },
+  {
+    name: "Terra",
+    objectives : ["Granja sustentable", "Constructor de casa", "Planta de energía"],
+  },
+  {
+    name: "Cosmos",
+    objectives : ["Artemis 1", "Reparar paneles solares", "Base lunar"],
+  },
+
+]
 // Initial state
 const initialState: ThemeState = 
 {

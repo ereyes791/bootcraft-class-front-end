@@ -3,7 +3,7 @@ import {TabContext, TabList, TabPanel} from '@mui/lab';
 import { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 
-export default function Packages() {
+export default function Crafts() {
     const [value, setValue] = useState('1');
     const fileTypes = ["JPG", "PNG", "GIF"];
     const [file, setFile] = useState(null);
