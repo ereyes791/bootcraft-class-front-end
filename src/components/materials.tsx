@@ -3,14 +3,16 @@ import {TabContext, TabList, TabPanel} from '@mui/lab';
 import { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 
-export default function Crafts() {
+export default function Materials() {
     const [value, setValue] = useState('1');
     const fileTypes = ["JPG", "PNG", "GIF"];
     const [file, setFile] = useState(null);
-  const handleChangeFile = (file) => {
+    //TODO: Add a class to handle the file
+  const handleChangeFile = (file:any) => {
     setFile(file);
   };
-    const handleChange = (event, newValue) => {
+   //TODO: Add a class to handle change 
+    const handleChange = (even :any, newValue:any) => {
       setValue(newValue);
     };
     return (<>

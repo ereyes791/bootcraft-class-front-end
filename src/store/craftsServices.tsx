@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AppState } from "./store";
-import Theme from "@/models/themes";
+import Mision from "@/models/misions";
 
-interface ThemeState {
-  theme: Array<Theme>,
-  ThemeSelected: String | null,
-  misions: Array<number>| null,
+interface misionState {
+  misions: Array<Mision>,
+  misionSelected: String | null,
+  objectives: Array<string>| null,
 }
 
 const data = [
@@ -24,36 +24,29 @@ const data = [
 
 ]
 // Initial state
-const initialState: ThemeState = 
+const initialState: misionState = 
 {
-    theme: Array.from(
-        Array(6), (_, i) => ({ 
-          name: `Option ${i + 1}`, 
-          random: Array.from(
-              Array(3), 
-              () => Math.round(Math.random() * 100)) 
-      })
-    ),
-    ThemeSelected: null,
-    misions: null,
-  }
+    misions: data,
+    misionSelected: null,
+    objectives: null,
+}
 
 
 // Actual Slice
 export const themeSlice = createSlice({
-  name: "theme",
+  name: "mision",
   initialState,
   reducers: {
     // Action to set the authentication status
     getOption(state, action) {
-      state.ThemeSelected = action.payload;
-      state.misions = state.theme.find((option: any) => option.name === action.payload)?.random;
+      state.misionSelected = action.payload;
+      state.objectives = state.misions.find((option: any) => option.name === action.payload)?.objectives;
     },
   },
 });
 
 export const { getOption } = themeSlice.actions;
 
-export const selectTheme = (state: AppState) => state.theme;
+export const selectMision = (state: AppState) => state.mision;
 
 export default themeSlice.reducer;
