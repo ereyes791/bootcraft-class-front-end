@@ -1,3 +1,18 @@
+.craft-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__container {
+    max-width: 800px;
+    color: white;
+
+    * {
+      color: inherit;
+    }
+  }
+}
+
+
 main{
   display: flex;
   flex-direction: column;

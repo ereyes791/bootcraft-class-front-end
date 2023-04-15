@@ -37,7 +37,7 @@ export default function Deliver() {
     console.log('ThemeSelected',ThemeSelected);
     function showAutoComplete(){
        return (
-            <div>
+            <div className=".craft-main__container">
                 <Themes/>
                 <Misions/>
                 <Crafts/>
@@ -47,9 +47,9 @@ export default function Deliver() {
     return (
     <>
         <h1>ENTREGAS</h1>
-      <Stack spacing={1} sx={{ width: 400 }}>
+      <section className="craft-main">
         {showAutoComplete()}
-      </Stack>
+      </section>
     </>
     );
 }
