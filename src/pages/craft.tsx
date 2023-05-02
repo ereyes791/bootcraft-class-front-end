@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectMision } from "@/store/craftsServices";
 import Misions from "@/components/objectives";
 import Crafts from "@/components/materials";
+import axios from "axios";
 
 export default function Craft() {
       // New State
@@ -17,6 +18,11 @@ export default function Craft() {
     const misionSelected = useState( useSelector(selectMision).misionSelected);
     const [previousValue, setPreviousValue] = useState('');
     const reduxValue = useSelector(selectMision).misionSelected;
+    axios.get('http://127.0.0.1:8000/api/mision')
+      .then(response => {
+        console.log(response);
+      } );
+
     useEffect(() => {
         if (reduxValue !== previousValue) {
             console.log(reduxValue,previousValue);
@@ -43,3 +49,7 @@ export default function Craft() {
     </>
     );
 }
+function componentDidMount() {
+  throw new Error("Function not implemented.");
+}
+
