@@ -1,11 +1,12 @@
+@import 'variables.scss';
 .craft-main {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: $blue-cobalt !important;
   &__container {
-    max-width: 800px;
-    color: white;
     background-color: white;
+    max-width: 800px;
     padding: 20px;
     border-radius: 10px;
     * {
@@ -36,6 +37,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background-color: $blue-cobalt;
 }
 
 body {
@@ -49,4 +51,5 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
 

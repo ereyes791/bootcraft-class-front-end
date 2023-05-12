@@ -1,4 +1,4 @@
-import { Stack,Autocomplete,TextField } from "@mui/material";
+import { Stack,Autocomplete,TextField,Card, CardContent } from "@mui/material";
 import { props } from "cypress/types/bluebird";
 import { type } from "os";
 import * as React from "react";
@@ -33,23 +33,22 @@ export default function Craft() {
     console.log('misionSelected',misionSelected);
     function showAutoComplete(){
        return (
-            <div className="craft-main__container">
+            <CardContent className="craft-main__container">
                 <Themes/>
                 {misionSelected?<Misions/>:null}
                 <Crafts/>
-            </div>
+            </CardContent>
        );
     }
     return (
     <>
         <h1>ENTREGAS</h1>
-      <section className="craft-main">
+        <Card className="craft-main">
+
         {showAutoComplete()}
-      </section>
+      </Card>
     </>
     );
 }
-function componentDidMount() {
-  throw new Error("Function not implemented.");
-}
+
 

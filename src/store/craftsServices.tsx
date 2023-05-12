@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AppState } from "./store";
 import Mision from "@/models/misions";
+import axios from "axios";
+import { forEach } from "cypress/types/lodash";
 
 interface misionState {
   misions: Array<Mision>,
@@ -8,25 +10,21 @@ interface misionState {
   objectives: Array<string>| null,
 }
 
-const data = [
-  {
-    name: "Ciudad Medieval",
-    objectives : ["Iglesia", "Castillo", "Mercado"],
-  },
-  {
-    name: "Terra",
-    objectives : ["Granja sustentable", "Constructor de casa", "Planta de energía"],
-  },
-  {
-    name: "Cosmos",
-    objectives : ["Artemis 1", "Reparar paneles solares", "Base lunar"],
-  },
-
-]
+function getMisions(){
+  const misions: { name: any; objectives: any; }[] = [];
+  axios.get('http://127.0.0.1:8000/api/mision')
+      .then(response => {
+        console.log(`response${response}`)
+        response.data.forEach((mision: any) => {
+            //misions.push({name: mision.name, objectives: mision.objectives.map((objective: any) => {objective.name})});
+          });
+      } );
+  return misions;
+  }
 // Initial state
 const initialState: misionState = 
 {
-    misions: data,
+    misions: getMisions(),
     misionSelected: null,
     objectives: null,
 }
